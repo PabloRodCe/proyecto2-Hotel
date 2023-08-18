@@ -14,6 +14,7 @@ public class Empleados {
     private String id;
     private double sueldo;
     private String puesto;
+    private EnunPuesto enunpuesto;
 
     public String getNombre() {
         return nombre;
@@ -55,20 +56,36 @@ public class Empleados {
         this.puesto = puesto;
     }
 
-    public Empleados(String nombre, String telefono, String id, double sueldo, String puesto) {
+    public EnunPuesto getEnunpuesto() {
+        return enunpuesto;
+    }
+
+    public void setEnunpuesto(EnunPuesto enunpuesto) {
+        this.enunpuesto = enunpuesto;
+    }
+    
+
+    public Empleados(String nombre, String telefono, String id, double sueldo, String puesto,EnunPuesto enunpuesto) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = id;
         this.sueldo = sueldo;
         this.puesto = puesto;
+        this.enunpuesto = enunpuesto;
     }
 
-    public Empleados(String nombre, String id, double sueldo, String puesto, String telefono) {
+    public Empleados(String nombre, String id, double sueldo, String puesto, String telefono,EnunPuesto enunpuesto) {
         this.nombre = nombre;
         this.id = id;
         this.sueldo = sueldo;
         this.puesto = puesto;
         this.telefono= "";
+        this.enunpuesto = enunpuesto;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleados{" + "nombre=" + nombre + ", telefono=" + telefono + ", id=" + id + ", sueldo=" + sueldo + ", puesto=" + puesto + ", enunpuesto=" + enunpuesto + '}';
     }
 
     
