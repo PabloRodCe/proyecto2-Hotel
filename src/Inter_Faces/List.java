@@ -8,9 +8,13 @@ package Inter_Faces;
  *
  * @author Pablo Rod
  */
-public interface List<Type>  {
-     public boolean agregar(Type obj);
+public interface List<Type> {
+
+    public boolean agregar(Type obj);
+
     public boolean eliminar(Type obj);
+
     public Type buscar(Object id);
-    public boolean actualizar (Type obj);
+
+    public boolean actualizar(Type obj);
 }

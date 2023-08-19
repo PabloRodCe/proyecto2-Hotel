@@ -8,10 +8,10 @@ package Inter_Faces;
  *
  * @author Pablo Rod
  */
-public interface Controller  {
-    public void agregar();
-    public void eliminar();
-    public void buscar();
-    public void actualizar ();
+public interface Controller<Type>  {
+    public void agregar(Type obj);
+    public void eliminar(Type obj);
+    public void buscar(Type obj);
+    public void actualizar (Type obj);
     
 }
