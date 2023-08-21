@@ -37,8 +37,8 @@ public class ListaClientes implements List<Cliente>{
     }
 
     @Override
-    public boolean eliminar(Cliente obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean eliminar(Cliente obj) {     
+       throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
