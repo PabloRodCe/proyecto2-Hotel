@@ -2,19 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Inter_Faces;
+package Interfaces;
 
 /**
  *
  * @author Pablo Rod
  */
-public interface List<Type> {
+public interface Controlador<Type> {
 
-    public boolean agregar(Type obj);
+    public void insert(Type obj);
 
-    public boolean eliminar(Type obj);
+    public void update(Type obj);
 
-    public Type buscar(Object id);
+    public void delete(Type obj);
 
-    public boolean actualizar(Type obj);
+    public void read(Object id);
+
+    public void readAll();
 }

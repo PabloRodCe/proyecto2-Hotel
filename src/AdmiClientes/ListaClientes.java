@@ -5,14 +5,14 @@
 package AdmiClientes;
 
 
-import Inter_Faces.List;
 import java.util.ArrayList;
+import Interfaces.Lista;
 
 /**
  *
  * @author Isaac Sibaja
  */
-public class ListaClientes implements List<Cliente>{
+public class ListaClientes implements Lista<Cliente>{
 
     private static ListaClientes listaClientes = null;
     ArrayList<Cliente> Clientes = new ArrayList<>();
@@ -29,25 +29,27 @@ public class ListaClientes implements List<Cliente>{
     }
 
     @Override
-    public boolean agregar(Cliente cliente) {
-        
-        Clientes.add(cliente);
-        return true;
-       
-    }
-
-    @Override
-    public boolean eliminar(Cliente obj) {
+    public boolean insert(Cliente obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Cliente buscar(Object id) {
+    public boolean update(Cliente obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean actualizar(Cliente obj) {
+    public boolean delete(Cliente obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Cliente search(Object id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Cliente[] toArray() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

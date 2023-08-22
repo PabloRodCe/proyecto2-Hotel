@@ -9,20 +9,20 @@ package AdmiHabitaciones;
  * @author Pablo Rod
  */
 public class Habitacion {
-    private int numeroHabitacion;
+    private int numero;
     private TipoHabitacion tipo;
     private boolean ocupada;
     private double precio;
 
-    public Habitacion(int numeroHabitacion, TipoHabitacion tipo) {
-        this.numeroHabitacion = numeroHabitacion;
+    public Habitacion(int numero, TipoHabitacion tipo) {
+        this.numero = numero;
         this.tipo = tipo;
         this.ocupada = false;
-        this.precio = calcularPrecioSugerido();
+        this.precio = calcularPrecioSugerido(tipo);
     }
 
-    public int getNumeroHabitacion() {
-        return numeroHabitacion;
+    public int getNumero() {
+        return numero;
     }
 
     public TipoHabitacion getTipo() {
@@ -32,10 +32,6 @@ public class Habitacion {
     public boolean isOcupada() {
         return ocupada;
     }
-    
-    public void setOcupada(boolean ocupada) {
-        this.ocupada = ocupada;
-    }
 
     public double getPrecio() {
         return precio;
@@ -43,9 +39,18 @@ public class Habitacion {
 
     public void setTipo(TipoHabitacion tipo) {
         this.tipo = tipo;
+        this.precio = calcularPrecioSugerido(tipo);
     }
 
-    private double calcularPrecioSugerido() {
+    public void ocupar() {
+        ocupada = true;
+    }
+
+    public void liberar() {
+        ocupada = false;
+    }
+
+    private double calcularPrecioSugerido(TipoHabitacion tipo) {
         switch (tipo) {
             case INDIVIDUAL:
                 return 45000;
@@ -54,7 +59,12 @@ public class Habitacion {
             case SUITE:
                 return 140000;
             default:
-                return 0;
+                return 0; // Tipo de habitación inválido
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Número=" + numero + ", Tipo=" + tipo + ", Ocupada=" + ocupada + ", Precio=" + precio;
     }
 }
