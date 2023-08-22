@@ -12,6 +12,16 @@ import Interfaces.Lista;
  * @author denze
  */
 public class ListaHabitacion implements Lista<Habitacion> {
+
+    private static ListaHabitacion listaHabitacion;
+
+    public static ListaHabitacion getInstance() {
+        if (listaHabitacion == null) {
+            listaHabitacion = new ListaHabitacion();
+        }
+        return listaHabitacion;
+    }
+
     private ArrayList<Habitacion> habitaciones;
 
     public ListaHabitacion() {
@@ -26,7 +36,6 @@ public class ListaHabitacion implements Lista<Habitacion> {
 
     @Override
     public boolean update(Habitacion obj) {
-        // No se permite modificar ocupada, solo tipo
         for (Habitacion habitacion : habitaciones) {
             if (habitacion.getNumero() == obj.getNumero()) {
                 habitacion.setTipo(obj.getTipo());
@@ -38,15 +47,18 @@ public class ListaHabitacion implements Lista<Habitacion> {
 
     @Override
     public boolean delete(Habitacion obj) {
+        Habitacion habitacionToRemove = null;
         for (Habitacion habitacion : habitaciones) {
             if (habitacion.getNumero() == obj.getNumero()) {
                 if (!habitacion.isOcupada()) {
-                    habitaciones.remove(habitacion);
-                    return true;
-                } else {
-                    throw new RuntimeException("No se puede eliminar la habitación, está ocupada.");
+                    habitacionToRemove = habitacion;
+                    break;
                 }
             }
+        }
+        if (habitacionToRemove != null) {
+            habitaciones.remove(habitacionToRemove);
+            return true;
         }
         return false;
     }

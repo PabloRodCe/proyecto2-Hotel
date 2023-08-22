@@ -59,7 +59,7 @@ public class Habitacion {
             case SUITE:
                 return 140000;
             default:
-                return 0; // Tipo de habitación inválido
+                return 0;
         }
     }
 

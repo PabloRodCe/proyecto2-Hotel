@@ -5,7 +5,6 @@
 package AdmiHabitaciones;
 
 import Interfaces.Vista;
-import java.util.ArrayList;
 import Interfaces.Controlador;
 
 /**
@@ -15,9 +14,9 @@ import Interfaces.Controlador;
 public class ControladorHabitacion implements Controlador<Habitacion>{
     private ListaHabitacion lista;
     private Vista vista;
-
+    
     public ControladorHabitacion(Vista vista) {
-        lista = new ListaHabitacion();
+        lista = ListaHabitacion.getInstance();
         this.vista = vista;
     }
 
@@ -38,12 +37,16 @@ public class ControladorHabitacion implements Controlador<Habitacion>{
 
     @Override
     public void delete(Habitacion habitacion) {
-        try {
-            if (lista.delete(habitacion)) {
+        Habitacion habitacionEnLista = lista.search(habitacion.getNumero());
+        if (habitacionEnLista != null) {
+            if (!habitacionEnLista.isOcupada()) {
+                lista.delete(habitacionEnLista);
                 this.readAll();
+            } else {
+                throw new RuntimeException("No se puede eliminar la habitación, está ocupada.");
             }
-        } catch (RuntimeException e) {
-            vista.displayErrorMessaje(e.getMessage());
+        } else {
+            vista.displayErrorMessaje("No se encontró la habitación con el número proporcionado.");
         }
     }
 
