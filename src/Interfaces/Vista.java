@@ -11,6 +11,7 @@ import javax.swing.JInternalFrame;
 /**
  *
  * @author denze
+ * @param <Type>
  */
 public interface Vista<Type> {
 

@@ -67,4 +67,8 @@ public class Habitacion {
     public String toString() {
         return "Número=" + numero + ", Tipo=" + tipo + ", Ocupada=" + ocupada + ", Precio=" + precio;
     }
+    
+    public Object[] toArrayObject() {
+        return new Object[]{getNumero(), getTipo(), isOcupada(), getPrecio()};
+    }
 }
