@@ -22,16 +22,24 @@ public class ControladorHabitacion implements Controlador<Habitacion>{
 
     @Override
     public void insert(Habitacion habitacion) {
-        lista.insert(habitacion);
-        this.readAll();
+        if (habitacion.isComplete()) {
+            lista.insert(habitacion);
+            this.readAll();
+        } else {
+            vista.displayErrorMessage("Faltan datos, no se pudo agregar la habitación.");
+        }
     }
 
     @Override
     public void update(Habitacion habitacion) {
-        if (lista.update(habitacion)) {
-            this.readAll();
+        if (habitacion.isComplete()) {
+            if (lista.update(habitacion)) {
+                this.readAll();
+            } else {
+                vista.displayErrorMessage("No se puede actualizar la habitación. Número de habitación no encontrado.");
+            }
         } else {
-            vista.displayErrorMessage("No se puede actualizar la habitación. Número de habitación no encontrado.");
+            vista.displayErrorMessaje("No se puede actualizar la habitación. Número de habitación no encontrado.");
         }
     }
 
