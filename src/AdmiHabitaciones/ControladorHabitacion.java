@@ -39,7 +39,7 @@ public class ControladorHabitacion implements Controlador<Habitacion>{
                 vista.displayErrorMessage("No se puede actualizar la habitación. Número de habitación no encontrado.");
             }
         } else {
-            vista.displayErrorMessaje("No se puede actualizar la habitación. Número de habitación no encontrado.");
+            vista.displayErrorMessage("No se puede actualizar la habitación. Número de habitación no encontrado.");
         }
     }
 
