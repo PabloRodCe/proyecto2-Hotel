@@ -283,12 +283,12 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
 
         Habitacion habitacionToDelete = new Habitacion(numero, tipo);
 
-        if (displayConfirmMessaje("¿Estás seguro de que deseas eliminar esta habitación?")) {
+        if (displayConfirmMessage("¿Estás seguro de que deseas eliminar esta habitación?")) {
             try {
                 controlador.delete(habitacionToDelete);
                 clear();
             } catch (RuntimeException e) {
-                displayErrorMessaje(e.getMessage());
+                displayErrorMessage(e.getMessage());
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -390,17 +390,17 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
     }
 
     @Override
-    public void displayMessaje(String msj) {
+    public void displayMessage(String msj) {
        JOptionPane.showMessageDialog(this, msj, "Información Importante", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
-    public void displayErrorMessaje(String msj) {
+    public void displayErrorMessage(String msj) {
         JOptionPane.showMessageDialog(this, msj, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
-    public boolean displayConfirmMessaje(String msj) {
+    public boolean displayConfirmMessage(String msj) {
        int result = JOptionPane.showConfirmDialog(this, msj, "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         return result == JOptionPane.YES_OPTION;
     }
