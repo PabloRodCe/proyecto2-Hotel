@@ -26,7 +26,7 @@ public class ControladorHabitacion implements Controlador<Habitacion>{
             lista.insert(habitacion);
             this.readAll();
         } else {
-            vista.displayErrorMessaje("Faltan datos, no se pudo agregar la habitación.");
+            vista.displayErrorMessage("Faltan datos, no se pudo agregar la habitación.");
         }
     }
 
@@ -36,10 +36,10 @@ public class ControladorHabitacion implements Controlador<Habitacion>{
             if (lista.update(habitacion)) {
                 this.readAll();
             } else {
-                vista.displayErrorMessaje("No se puede actualizar la habitación. Número de habitación no encontrado.");
+                vista.displayErrorMessage("No se puede actualizar la habitación. Número de habitación no encontrado.");
             }
         } else {
-            vista.displayErrorMessaje("No se puede actualizar ha habitación. Faltan datos.");
+            vista.displayErrorMessage("No se puede actualizar ha habitación. Faltan datos.");
         }
     }
 
@@ -54,7 +54,7 @@ public class ControladorHabitacion implements Controlador<Habitacion>{
                 throw new RuntimeException("No se puede eliminar la habitación, está ocupada.");
             }
         } else {
-            vista.displayErrorMessaje("No se encontró la habitación con el número proporcionado.");
+            vista.displayErrorMessage("No se encontró la habitación con el número proporcionado.");
         }
     }
 
@@ -64,7 +64,7 @@ public class ControladorHabitacion implements Controlador<Habitacion>{
         if (habitacion != null) {
             vista.display(habitacion);
         } else {
-            vista.displayErrorMessaje("No se encontró la habitación con el número proporcionado.");
+            vista.displayErrorMessage("No se encontró la habitación con el número proporcionado.");
         }
     }
 
