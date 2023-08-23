@@ -4,11 +4,13 @@
  */
 package AdmiHabitaciones;
 
+import Interfaces.Entidad;
+
 /**
  *
  * @author Pablo Rod
  */
-public class Habitacion {
+public class Habitacion implements Entidad {
     private int numero;
     private TipoHabitacion tipo;
     private boolean ocupada;
@@ -70,5 +72,10 @@ public class Habitacion {
     
     public Object[] toArrayObject() {
         return new Object[]{getNumero(), getTipo(), isOcupada(), getPrecio()};
+    }
+
+    @Override
+    public boolean isComplete() {
+        return numero != 0;
     }
 }

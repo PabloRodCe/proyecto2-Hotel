@@ -69,7 +69,7 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Tipo de habitación");
 
-        txtNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#########"))));
+        txtNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtNumero.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txtTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -180,7 +180,7 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
