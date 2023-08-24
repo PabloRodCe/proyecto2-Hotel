@@ -35,6 +35,11 @@ public class Habitacion implements Entidad {
         return ocupada;
     }
 
+    public void setOcupada(boolean ocupada) {
+        this.ocupada = ocupada;
+    }
+    
+
     public double getPrecio() {
         return precio;
     }
