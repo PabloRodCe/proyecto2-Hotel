@@ -56,6 +56,10 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
         txtNombre = new javax.swing.JTextField();
         txtId = new javax.swing.JFormattedTextField();
 
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -423,7 +427,6 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
     public void displayAll(Empleados[] emp) {
         DefaultTableModel tableModel = (DefaultTableModel) tblHabitaciones.getModel();
         tableModel.setNumRows(0);

@@ -401,4 +401,9 @@ public class FrmServicios extends javax.swing.JInternalFrame implements Vista<Se
     public void displayErrorMessage(String msj) {
         JOptionPane.showMessageDialog(this, msj, "Error", JOptionPane.ERROR_MESSAGE);
     }
+
+    @Override
+    public void displayAll(Servicio[] regs) {
+        
+    }
 }

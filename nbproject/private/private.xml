@@ -5,16 +5,18 @@
         <group>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/Formularios/FrmServicios.java</file>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiEmpleados/Empleados.java</file>
-            <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiClientes/ClienteController.java</file>
+            <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiHabitaciones/ControladorHabitacion.java</file>
+            <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiHabitaciones/ListaHabitacion.java</file>
+            <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiEmpleados/EmpleadosController.java</file>
+            <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiClientes/ControladorCliente.java</file>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/Formularios/FrmHabitaciones.java</file>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/Interfaces/Controlador.java</file>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/GestiónReservas/Reservas.java</file>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiClientes/Cliente.java</file>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/Formularios/FrmClientes.java</file>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/Formularios/FrmMenu.java</file>
-            <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiHabitaciones/ControladorHabitacion.java</file>
             <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/Formularios/frmEmpleados.java</file>
-            <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiEmpleados/EmpleadosController.java</file>
+            <file>file:/C:/Users/Pablo%20Rod/Documents/NetBeansProjects/proyecto2-Hotel/src/AdmiClientes/ListaClientes.java</file>
         </group>
     </open-files>
 </project-private>

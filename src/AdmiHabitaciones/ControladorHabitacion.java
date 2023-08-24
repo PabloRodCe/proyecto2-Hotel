@@ -6,6 +6,7 @@ package AdmiHabitaciones;
 
 import Interfaces.Vista;
 import Interfaces.Controlador;
+import Interfaces.Display;
 
 /**
  *
@@ -14,6 +15,7 @@ import Interfaces.Controlador;
 public class ControladorHabitacion implements Controlador<Habitacion>{
     private ListaHabitacion lista;
     private Vista vista;
+    private Display display;
     
     public ControladorHabitacion(Vista vista) {
         lista = ListaHabitacion.getInstance();
@@ -72,7 +74,7 @@ public class ControladorHabitacion implements Controlador<Habitacion>{
     public void readAll() {
         Habitacion[] habitaciones = lista.toArray();
         if (habitaciones.length > 0) {
-            vista.displayAll(habitaciones);
+           vista.displayAll(habitaciones);
         }
     }
 }

@@ -34,6 +34,8 @@ public interface Vista<Type> {
     public void clear();
 
     public void display(Type regs);
+    
+    public void displayAll(Type[] regs);
 
     public void displayMessage(String msj);
 

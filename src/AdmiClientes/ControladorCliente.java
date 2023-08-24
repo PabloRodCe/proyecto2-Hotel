@@ -19,12 +19,7 @@ public class ControladorCliente implements Controlador<Cliente> {
     private ListaClientes lista;
     private Vista vista;
     
-    //isCompleted adaptadado para que los JTextField de la grafica no esten vacios
-    //creando los get de los txt como txtId
-    
-//    public boolean isComplete() {
-//        return !this.vista.getId.getText.equals("") && !this.vista.getNombre.getText.equals("") && !this.vista.getText.getCorreo.equals("");
-//    }
+  
 
     public ControladorCliente(Vista vista) {
         lista = ListaClientes.getInstance();
