@@ -12,7 +12,7 @@ public class Empleados {
     private String nombre;
     private String telefono;
     private String id;
-    private double sueldo;
+    private int sueldo;
     private String puesto;
     private EnunPuesto enunpuesto;
 
@@ -40,11 +40,11 @@ public class Empleados {
         this.id = id;
     }
 
-    public double getSueldo() {
+    public int getSueldo() {
         return sueldo;
     }
 
-    public void setSueldo(double sueldo) {
+    public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
 
@@ -64,30 +64,55 @@ public class Empleados {
         this.enunpuesto = enunpuesto;
     }
     
+    public int sueldo(){
+        int sueldo = 0;
+        
+        if (getEnunpuesto() == enunpuesto.Gerente) {
+             setSueldo(1400000);
+        }else if (getEnunpuesto() == enunpuesto.Conserje) {
+            setSueldo(550000);
+        }
+        else if (getEnunpuesto() == enunpuesto.Recepcionista) {
+            setSueldo(800000);
+        }
+        else if (getEnunpuesto() == enunpuesto.Supervisor) {
+            setSueldo(1100000);
+        }
+        else if (getEnunpuesto() == enunpuesto.Mantenimiento) {
+            setSueldo(650000);
+        }
+        sueldo = getSueldo();
+        return sueldo;
+    }
+    
 
-    public Empleados(String nombre, String telefono, String id, double sueldo, String puesto,EnunPuesto enunpuesto) {
+    public Empleados(String nombre, String telefono, String id, EnunPuesto enunpuesto) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = id;
-        this.sueldo = sueldo;
-        this.puesto = puesto;
-        this.enunpuesto = enunpuesto;
+        this.puesto = enunpuesto.toString();
+        setEnunpuesto(enunpuesto);
+        this.sueldo = sueldo();
     }
 
-    public Empleados(String nombre, String id, double sueldo, String puesto, String telefono,EnunPuesto enunpuesto) {
-        this.nombre = nombre;
-        this.id = id;
-        this.sueldo = sueldo;
-        this.puesto = puesto;
-        this.telefono= "";
-        this.enunpuesto = enunpuesto;
-    }
+//    public Empleados(String nombre, String id,  String puesto, EnunPuesto enunpuesto) {
+//        this.nombre = nombre;
+//        this.id = id;
+//        this.sueldo = sueldo(getPuesto());
+//        this.puesto = puesto;
+//        this.telefono= "";
+//        this.enunpuesto = enunpuesto;
+//    }
 
     @Override
     public String toString() {
         return "Empleados{" + "nombre=" + nombre + ", telefono=" + telefono + ", id=" + id + ", sueldo=" + sueldo + ", puesto=" + puesto + ", enunpuesto=" + enunpuesto + '}';
     }
 
-    
-    
+    public boolean isComplete() {
+        return !this.id.equals("") && !this.nombre.equals("") &&!this.puesto.equals("")&&!this.telefono.equals("");
+     }
+     public Object[] toArrayObject() {
+        return new Object[]{this.id,this.nombre,this.puesto,this.sueldo,this.telefono};
+     }
 }

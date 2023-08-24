@@ -11,8 +11,9 @@ package AdmiEmpleados;
 public enum EnunPuesto {
     Recepcionista,
     Gerente,
-    Conserge,
+    Conserje,
     Supervisor,
     Mantenimiento;
     
+     
 }
