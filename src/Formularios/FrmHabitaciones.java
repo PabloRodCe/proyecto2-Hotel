@@ -384,7 +384,7 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
 
     @Override
     public boolean displayConfirmMessage(String msj) {
-       int result = JOptionPane.showConfirmDialog(this, msj, "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(this, msj, "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         return result == JOptionPane.YES_OPTION;
     }
 }
