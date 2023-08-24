@@ -5,27 +5,32 @@
 package Formularios;
 
 import AdmiClientes.Cliente;
-import AdmiClientes.ClienteController;
+
+import AdmiClientes.ControladorCliente;
 import Interfaces.Controlador;
+import Interfaces.Tabla;
 import Interfaces.Vista;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
  * @author jprod
  */
 public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cliente> {
+
     private Controlador controller;
+
     public FrmClientes() {
         initComponents();
-        controller = new ClienteController(this);
+        controller = new ControladorCliente(this);
         this.loadRoles();
         this.controller.readAll();
     }
-    
+
     private void loadRoles() {
 //        Role[] roles = Role.values();  // Suponiendo que tienes una enumeración llamada Role
 //        for (Role role : roles) {
@@ -62,7 +67,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
         btnSearch = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMembers = new javax.swing.JTable();
+        tblClientes = new javax.swing.JTable();
         txtFiltro = new javax.swing.JTextField();
 
         setClosable(true);
@@ -83,6 +88,11 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
 
         txtId.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#########"))));
         txtId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
 
         txtName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -141,8 +151,8 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +239,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        tblMembers.setModel(new javax.swing.table.DefaultTableModel(
+        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -252,19 +262,19 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
                 return canEdit [columnIndex];
             }
         });
-        tblMembers.setColumnSelectionAllowed(true);
-        tblMembers.getTableHeader().setReorderingAllowed(false);
-        tblMembers.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblClientes.setColumnSelectionAllowed(true);
+        tblClientes.getTableHeader().setReorderingAllowed(false);
+        tblClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblMembersMouseClicked(evt);
+                tblClientesMouseClicked(evt);
             }
         });
-        tblMembers.addKeyListener(new java.awt.event.KeyAdapter() {
+        tblClientes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tblMembersKeyReleased(evt);
+                tblClientesKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(tblMembers);
+        jScrollPane1.setViewportView(tblClientes);
 
         txtFiltro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -334,63 +344,81 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String id = txtId.getText();
-        String name = txtName.getText();
-        String phone = txtPhone.getText();
-        String email = txtEmail.getText();
-        Role role = Role.valueOf(txtRole.getSelectedItem().toString());
+//        
 
-        if (!id.isEmpty() && !name.isEmpty() && !phone.isEmpty() && !email.isEmpty()) {
-            Member newMember = new Member(id, name, phone, email, role);
-            controller.insert(newMember);
-            clear();
-        } else {
-            displayErrorMessaje("Todos los campos son requeridos.");
-        }
-    
+      
+        Cliente cliente = new Cliente(Integer.parseInt(txtId.getText()), txtName.getText(),txtDate.getText(), txtPhone.getText(), txtEmail.getText());
+        controller.insert(cliente);
+        clear();
+//        String id = txtId.getText();
+//        String name = txtName.getText();
+//        String phone = txtPhone.getText();
+//        String email = txtEmail.getText();
+//        
+//        Role role = Role.valueOf(txtRole.getSelectedItem().toString());
+//
+//        if (!id.isEmpty() && !name.isEmpty() && !phone.isEmpty() && !email.isEmpty()) {
+//            Member newMember = new Member(id, name, phone, email, role);
+//            controller.insert(neMember);
+//            clear();w
+//        } else {
+//            displayErrorMessaje("Todos los campos son requeridos.");
+//        }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-      String id = txtId.getText();
-    
-    if (!id.isEmpty()) {
-        Member memberToDelete = new Member(id);
-        controller.delete(memberToDelete);
-        clear();
-    } else {
-        displayErrorMessaje("Ingrese la cédula del miembro a eliminar.");
-    }
+
+        Cliente cliente = new Cliente(Integer.parseInt(txtId.getText()), txtName.getText(),txtDate.getText(), txtPhone.getText(), txtEmail.getText());
+
+        if (displayConfirmMessage("¿Estás seguro de que deseas eliminar esta Empleado?")) {
+            try {
+                controller.delete(cliente);
+                clear();
+                
+            } catch (RuntimeException e) {
+                displayErrorMessage(e.getMessage());
+            }
+        }
+
+//        if (!id.isEmpty()) {
+//            Member memberToDelete = new Member(id);
+//            controller.delete(memberToDelete);
+//            clear();
+//        } else {
+//            displayErrorMessaje("Ingrese la cédula del miembro a eliminar.");
+//        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String searchId = JOptionPane.showInputDialog(this, "Ingrese la cédula del miembro a buscar:");
-        
+
         if (searchId != null && !searchId.isEmpty()) {
             controller.read(searchId);
         }
-    
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void tblMembersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMembersMouseClicked
-      if (evt.getClickCount() == 2) { // Verificar si hubo 2 clics (doble clic)
-           int row = this.tblMembers.getSelectedRow();
-           Object id = tblMembers.getValueAt(row, 0);
-           this.controller.read(id);
+    private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
+        if (evt.getClickCount() == 2) { // Verificar si hubo 2 clics (doble clic)
+            int row = this.tblClientes.getSelectedRow();
+            Object id = tblClientes.getValueAt(row, 0);
+            this.controller.read(id);
         }
-    }//GEN-LAST:event_tblMembersMouseClicked
+    }//GEN-LAST:event_tblClientesMouseClicked
 
-    private void tblMembersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMembersKeyReleased
-        if (evt.getKeyCode()==KeyEvent.VK_DELETE){
-            int row = this.tblMembers.getSelectedRow();
-            if (row>-1){
-               Object id = tblMembers.getValueAt(row, 0);
-               this.controller.delete(new Member(id.toString()));
-           }
-       }
-    }//GEN-LAST:event_tblMembersKeyReleased
+    private void tblClientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblClientesKeyReleased
+//        if (evt.getKeyCode()==KeyEvent.VK_DELETE){
+//            int row = this.tblClientes.getSelectedRow();
+//            if (row>-1){
+//               Object id = tblClientes.getValueAt(row, 0);
+//               this.controller.delete(new Member(id.toString()));
+//           }
+//       }
+    }//GEN-LAST:event_tblClientesKeyReleased
 
     private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
-       Table.filter(tblMembers,txtFiltro.getText());
+        Tabla.filter(tblClientes, txtFiltro.getText());
     }//GEN-LAST:event_txtFiltroKeyReleased
 
     private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
@@ -404,6 +432,10 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
     private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDateActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -421,7 +453,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblMembers;
+    private javax.swing.JTable tblClientes;
     private javax.swing.JFormattedTextField txtAge;
     private javax.swing.JFormattedTextField txtDate;
     private javax.swing.JTextField txtEmail;
@@ -437,38 +469,37 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
         txtName.setText("");
         txtPhone.setText("");
         txtEmail.setText("");
-        txtRole.setSelectedIndex(0);
+        txtDate.setText("");
     }
-    
-    @Override
-    public void display(Member member) {
-    if (member != null) {
-        txtId.setText(member.getId());
-        txtName.setText(member.getName());
-        txtPhone.setText(member.getPhone());
-        txtEmail.setText(member.getEmail());
-        txtRole.setSelectedItem(member.getRole().toString());
-    } else {
-        clear(); // Limpiar las cajas de texto si el miembro no se encuentra
-    }
-}
 
-    
-    
     @Override
-    public void displayAll(Member[] regs) {
-       DefaultTableModel tableModel=(DefaultTableModel) tblMembers.getModel();
-       tableModel.setNumRows(0);
-       for(Member member:regs){
-           Object[] Data=member.toArrayObject();
+    public void display(Cliente cliente) {
+        if (cliente != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+            txtId.setText(String.valueOf(cliente.getId()));
+            txtName.setText(cliente.getNombre());
+            txtPhone.setText(cliente.getTelefono());
+            txtEmail.setText(cliente.getCorreo());
+            txtDate.setText( cliente.getFechaNacimiento().format(formatter));
+        } else {
+            clear(); // Limpiar las cajas de texto si el miembro no se encuentra
+        }
+    }
+
+    @Override
+    public void displayAll(Cliente[] regs) {
+        DefaultTableModel tableModel = (DefaultTableModel) tblClientes.getModel();
+        tableModel.setNumRows(0);
+        for (Cliente cliente : regs) {
+            Object[] Data = cliente.toArrayObject();
             tableModel.addRow(Data);
         }
-        this.tblMembers.setModel(tableModel);
+        this.tblClientes.setModel(tableModel);
     }
 
     @Override
     public void displayMessage(String msj) {
-       JOptionPane.showMessageDialog(this, msj, "Información Importante", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, msj, "Información Importante", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
@@ -478,7 +509,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements Vista<Cli
 
     @Override
     public boolean displayConfirmMessage(String msj) {
-       int result = JOptionPane.showConfirmDialog(this, msj, "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(this, msj, "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         return result == JOptionPane.YES_OPTION;
     }
 }

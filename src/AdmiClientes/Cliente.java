@@ -7,6 +7,7 @@ package AdmiClientes;
 import Excepciones.ReservasPendientesException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -22,11 +23,12 @@ public class Cliente {
     private int Edad;
     private boolean tieneReservasPendientes;
 
-    public Cliente(int Id, String Nombre, int FechaNacimiento, String Telefono, String Correo) {
+    public Cliente(int Id, String Nombre, String FechaNacimiento, String Telefono, String Correo) {
         this.Id = Id;
         this.Nombre = Nombre;
         this.Telefono = Telefono;
         this.Correo = Correo;
+        setFechaNacimiento(FechaNacimiento);
         this.tieneReservasPendientes = false;
     }
 
@@ -51,11 +53,14 @@ public class Cliente {
     }
 
     public LocalDate getFechaNacimiento() {
+        
+        
         return FechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.FechaNacimiento = FechaNacimiento;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        this.FechaNacimiento = LocalDate.parse(fechaNacimiento, formatter);
     }
 
     public int getEdad() {
@@ -97,5 +102,17 @@ public class Cliente {
     public void setEdad(int Edad) {
         this.Edad = Edad;
     }
+    @Override
+    public String toString() {
+        return "Identificación=" + Id + ", Nombre=" + Nombre + ", Fecha de Nacimiento=" + ", Teléfono=" + Telefono + ", Correo=" + Correo;
+    }
+    public boolean isComplete() {
+        return this.Id > 0 && !this.Nombre.equals("") && !this.Correo.equals("");
+    }
+    public Object[] toArrayObject() {
+    return new Object[]{this.Id, this.Nombre, this.Telefono, this.Correo};
+}
+
+
 
 }

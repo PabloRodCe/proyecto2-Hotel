@@ -16,6 +16,7 @@ public class EmpleadosController implements Controlador<Empleados> {
 
     private listaEmpleados lista;    
     private Vista vista;   
+    
 
     public EmpleadosController(Vista vista) {
         lista = listaEmpleados.getInstance();
@@ -88,10 +89,14 @@ public class EmpleadosController implements Controlador<Empleados> {
         }
     }
     
+   
+
+    
     @Override
     public void read(Object id) {
         Empleados empleado = lista.search(id);
         if (empleado != null) {
+            
             vista.display(empleado);
         } else {
             vista.displayErrorMessage("No se encontró el empleado con el ID proporcionado.");

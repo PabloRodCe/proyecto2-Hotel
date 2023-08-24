@@ -10,6 +10,7 @@ import AdmiEmpleados.EnunPuesto;
 import Interfaces.Controlador;
 import Interfaces.Tabla;
 import Interfaces.Vista;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,13 +23,12 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
      * Creates new form frmEmpleados
      */
     private Controlador controlador;
+
     public frmEmpleados() {
         initComponents();
-         this.controlador = new EmpleadosController(this);
+        this.controlador = new EmpleadosController(this);
+        this.controlador.readAll();
     }
-    
-   
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +42,6 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JFormattedTextField();
-        txtId = new javax.swing.JFormattedTextField();
         txtPuesto = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,6 +54,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHabitaciones = new javax.swing.JTable();
         txtNombre = new javax.swing.JTextField();
+        txtId = new javax.swing.JFormattedTextField();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -63,9 +63,6 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
 
         txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        txtId.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        txtId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txtPuesto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " Recepcionista", " Gerente", " Conserje", " Supervisor", " Mantenimiento" }));
@@ -166,6 +163,9 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
         });
         jScrollPane1.setViewportView(tblHabitaciones);
 
+        txtId.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -173,25 +173,6 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(txtNombre)))
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +190,29 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
                                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(262, 262, 262))))))
+                                .addGap(262, 262, 262))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(txtNombre)))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(49, 49, 49)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,10 +225,10 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,31 +266,31 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
     }//GEN-LAST:event_txtPuestoActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
+
         EnunPuesto puesto = null;
-        
-        if (txtPuesto.getSelectedIndex() ==0) {
+
+        if (txtPuesto.getSelectedIndex() == 0) {
             puesto = EnunPuesto.Recepcionista;
-            
-        }else if (txtPuesto.getSelectedIndex() ==1) {
+
+        } else if (txtPuesto.getSelectedIndex() == 1) {
             puesto = EnunPuesto.Gerente;
-            
-        }else if (txtPuesto.getSelectedIndex() ==2) {
+
+        } else if (txtPuesto.getSelectedIndex() == 2) {
             puesto = EnunPuesto.Conserje;
-            
-        }else if (txtPuesto.getSelectedIndex() ==3) {
+
+        } else if (txtPuesto.getSelectedIndex() == 3) {
             puesto = EnunPuesto.Supervisor;
-            
-        }else if (txtPuesto.getSelectedIndex() ==4) {
+
+        } else if (txtPuesto.getSelectedIndex() == 4) {
             puesto = EnunPuesto.Mantenimiento;
-            
+
         }
-        System.out.println(puesto.toString());
-        System.out.println( txtPuesto.getSelectedIndex());
-        Empleados empleado = new Empleados(txtNombre.getText(), txtTelefono.getText(), txtId.getText(), puesto );
+//        System.out.println(puesto.toString());
+//        System.out.println( txtPuesto.getSelectedIndex());
+        Empleados empleado = new Empleados(txtNombre.getText(), txtTelefono.getText(), txtId.getText(), puesto);
         controlador.insert(empleado);
         clear();
-        
+
 //        int numero = Integer.parseInt(txtNumero.getText());
 //        TipoHabitacion tipo = TipoHabitacion.valueOf(txtTipo.getSelectedItem().toString());
 //
@@ -297,19 +300,39 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+//        
+//          
 //        int numero = Integer.parseInt(txtNombre.getText());
 //        TipoHabitacion tipo = TipoHabitacion.valueOf(txtPuesto.getSelectedItem().toString());
-//
-//        Habitacion habitacionToDelete = new Habitacion(numero, tipo);
-//
-//        if (displayConfirmMessage("¿Estás seguro de que deseas eliminar esta habitación?")) {
-//            try {
-//                controlador.delete(habitacionToDelete);
-//                clear();
-//            } catch (RuntimeException e) {
-//                displayErrorMessage(e.getMessage());
-//            }
-//        }
+        EnunPuesto puesto = null;
+
+        if (txtPuesto.getSelectedIndex() == 0) {
+            puesto = EnunPuesto.Recepcionista;
+
+        } else if (txtPuesto.getSelectedIndex() == 1) {
+            puesto = EnunPuesto.Gerente;
+
+        } else if (txtPuesto.getSelectedIndex() == 2) {
+            puesto = EnunPuesto.Conserje;
+
+        } else if (txtPuesto.getSelectedIndex() == 3) {
+            puesto = EnunPuesto.Supervisor;
+
+        } else if (txtPuesto.getSelectedIndex() == 4) {
+            puesto = EnunPuesto.Mantenimiento;
+
+        }
+        Empleados empleadoDelete = new Empleados(txtNombre.getText(), txtTelefono.getText(), txtId.getText(), puesto);
+       
+        if (displayConfirmMessage("¿Estás seguro de que deseas eliminar esta Empleado?")) {
+            try {
+               
+                controlador.delete(empleadoDelete);
+                clear();
+            } catch (RuntimeException e) {
+                displayErrorMessage(e.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -331,28 +354,28 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
     }//GEN-LAST:event_txtFiltroActionPerformed
 
     private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
-        Tabla.filter(tblHabitaciones,txtFiltro.getText());
+        Tabla.filter(tblHabitaciones, txtFiltro.getText());
     }//GEN-LAST:event_txtFiltroKeyReleased
 
     private void tblHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHabitacionesMouseClicked
         //      if (evt.getClickCount() == 2) {
-            //           int row = this.tblHabitaciones.getSelectedRow();
-            //           Object id = tblHabitaciones.getValueAt(row, 0);
-            //           this.controlador.read(id);
-            //        }
+        //           int row = this.tblHabitaciones.getSelectedRow();
+        //           Object id = tblHabitaciones.getValueAt(row, 0);
+        //           this.controlador.read(id);
+        //        }
     }//GEN-LAST:event_tblHabitacionesMouseClicked
 
     private void tblHabitacionesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblHabitacionesKeyReleased
         //        if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
-            //            int row = this.tblHabitaciones.getSelectedRow();
-            //            if (row > -1) {
-                //                Object numeroObj = tblHabitaciones.getValueAt(row, 0); // Asumiendo que el número de la habitación está en la primera columna
-                //                if (numeroObj instanceof Integer) {
-                    //                    int numero = (int) numeroObj;
-                    //                    this.controlador.delete(new Habitacion((int) numeroObj, TipoHabitacion.INDIVIDUAL));
-                    //                }
-                //            }
-            //        }
+        //            int row = this.tblHabitaciones.getSelectedRow();
+        //            if (row > -1) {
+        //                Object numeroObj = tblHabitaciones.getValueAt(row, 0); // Asumiendo que el número de la habitación está en la primera columna
+        //                if (numeroObj instanceof Integer) {
+        //                    int numero = (int) numeroObj;
+        //                    this.controlador.delete(new Habitacion((int) numeroObj, TipoHabitacion.INDIVIDUAL));
+        //                }
+        //            }
+        //        }
     }//GEN-LAST:event_tblHabitacionesKeyReleased
 
 
@@ -377,7 +400,10 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        txtId.setText("");
+            txtNombre.setText("");
+            txtPuesto.setSelectedIndex(0);
+            txtTelefono.setText("");
     }
 
     @Override
@@ -385,10 +411,10 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
         if (emp != null) {
             txtId.setText(emp.getId());
             txtNombre.setText(emp.getNombre());
-            txtPuesto.setSelectedItem(emp.getPuesto().toString());
+            txtPuesto.setSelectedItem(emp.getPuesto());
             
             txtTelefono.setText(emp.getTelefono());
-            
+
             
             
         } else {
@@ -403,7 +429,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
         tableModel.setNumRows(0);
 
         for (Empleados empleado : emp) {
-            
+
             Object[] data = empleado.toArrayObject();
             System.out.println(data.toString());
             tableModel.addRow(data);
@@ -415,16 +441,17 @@ public class frmEmpleados extends javax.swing.JInternalFrame implements Vista<Em
 
     @Override
     public void displayMessage(String msj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JOptionPane.showMessageDialog(this, msj, "Información Importante", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
     public boolean displayConfirmMessage(String msj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int result = JOptionPane.showConfirmDialog(this, msj, "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return result == JOptionPane.YES_OPTION;
     }
 
     @Override
     public void displayErrorMessage(String msj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JOptionPane.showMessageDialog(this, msj, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
