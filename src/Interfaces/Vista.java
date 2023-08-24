@@ -35,8 +35,6 @@ public interface Vista<Type> {
 
     public void display(Type regs);
 
-    public void displayAll(Type[] regs);
-
     public void displayMessage(String msj);
 
     public boolean displayConfirmMessage(String msj);

@@ -372,21 +372,6 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
         }
     }
 
-    
-    
-    @Override
-    public void displayAll(Habitacion[] regs) {
-        DefaultTableModel tableModel = (DefaultTableModel) tblHabitaciones.getModel();
-        tableModel.setNumRows(0);
-
-        for (Habitacion habitacion : regs) {
-            Object[] data = habitacion.toArrayObject();
-            tableModel.addRow(data);
-        }
-
-        tblHabitaciones.setModel(tableModel);
-    }
-
     @Override
     public void displayMessage(String msj) {
        JOptionPane.showMessageDialog(this, msj, "Información Importante", JOptionPane.INFORMATION_MESSAGE);

@@ -384,19 +384,6 @@ public class FrmServicios extends javax.swing.JInternalFrame implements Vista<Se
     } else {
         clear(); // Limpiar las cajas de texto si el miembro no se encuentra
     }
-}
-
-    
-    
-    @Override
-    public void displayAll(Servicio[] regs) {
-       DefaultTableModel tableModel=(DefaultTableModel) tblMembers.getModel();
-       tableModel.setNumRows(0);
-       for(Servicio servicio:regs){
-           Object[] Data=servicio.toArrayObject();
-            tableModel.addRow(Data);
-        }
-        this.tblMembers.setModel(tableModel);
     }
 
     @Override
