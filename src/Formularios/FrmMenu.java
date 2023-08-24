@@ -31,6 +31,7 @@ public class FrmMenu extends javax.swing.JFrame {
         menu = new javax.swing.JMenuBar();
         menuManage = new javax.swing.JMenu();
         menuHabitaciones = new javax.swing.JMenuItem();
+        menuServicios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +51,7 @@ public class FrmMenu extends javax.swing.JFrame {
         menuManage.setText("Administrar");
         menuManage.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        menuHabitaciones.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuHabitaciones.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuHabitaciones.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuHabitaciones.setText("Habitaciones");
         menuHabitaciones.setToolTipText("");
@@ -60,6 +61,16 @@ public class FrmMenu extends javax.swing.JFrame {
             }
         });
         menuManage.add(menuHabitaciones);
+
+        menuServicios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuServicios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuServicios.setText("Servicios");
+        menuServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuServiciosActionPerformed(evt);
+            }
+        });
+        menuManage.add(menuServicios);
 
         menu.add(menuManage);
 
@@ -80,9 +91,14 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHabitacionesActionPerformed
-        FrmHabitaciones frm = new FrmHabitaciones();
-        Vista.showInternal(desktopMenu, frm);
+        FrmHabitaciones habitaciones = new FrmHabitaciones();
+        Vista.showInternal(desktopMenu, habitaciones);
     }//GEN-LAST:event_menuHabitacionesActionPerformed
+
+    private void menuServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuServiciosActionPerformed
+        FrmServicios servicios = new FrmServicios();
+        Vista.showInternal(desktopMenu,servicios);
+    }//GEN-LAST:event_menuServiciosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,5 +141,6 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenuItem menuHabitaciones;
     private javax.swing.JMenu menuManage;
+    private javax.swing.JMenuItem menuServicios;
     // End of variables declaration//GEN-END:variables
 }

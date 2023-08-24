@@ -4,31 +4,29 @@
  */
 package Formularios;
 
-import AdmiHabitaciones.ControladorHabitacion;
-import AdmiHabitaciones.Habitacion;
-import AdmiHabitaciones.TipoHabitacion;
+import AdmiServicios.Servicio;
+import AdmiServicios.ServicioController;
 import Interfaces.Controlador;
 import Interfaces.Tabla;
 import Interfaces.Vista;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista<Habitacion> {
+public class FrmServicios extends javax.swing.JInternalFrame implements Vista<Servicio> {
     private Controlador controlador;
-    public FrmHabitaciones() {
+    public FrmServicios() {
         initComponents();
-        controlador = new ControladorHabitacion(this);
+        controlador = new ServicioController(this);
         this.loadRoles();
         this.controlador.readAll();
     }
     
     private void loadRoles() {
-        TipoHabitacion[] roles = TipoHabitacion.values();  // Suponiendo que tienes una enumeración llamada Role
-        for (TipoHabitacion role : roles) {
-            txtTipo.addItem(role.toString());
-        }
+//        Role[] roles = Role.values();  // Suponiendo que tienes una enumeración llamada Role
+//        for (Role role : roles) {
+//            txtRole.addItem(role.toString());
+//        }
     }
 
     /**
@@ -42,17 +40,21 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtNumero = new javax.swing.JFormattedTextField();
-        txtTipo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtCode = new javax.swing.JFormattedTextField();
+        txtName = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JFormattedTextField();
+        txtDes = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblHabitaciones = new javax.swing.JTable();
+        tblMembers = new javax.swing.JTable();
         txtFiltro = new javax.swing.JTextField();
 
         setClosable(true);
@@ -60,20 +62,26 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Número");
+        jLabel1.setText("Código");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Tipo de habitación");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Nombre");
 
-        txtNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        txtNumero.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Precio");
 
-        txtTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTipoActionPerformed(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Descripción");
+
+        txtCode.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#########"))));
+        txtCode.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtPrice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtDes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,13 +90,21 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(135, 135, 135))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,15 +112,27 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/reload.png"))); // NOI18N
+        btnUpdate.setToolTipText("Limpiar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Guardar.png"))); // NOI18N
         btnSave.setToolTipText("Guardar");
@@ -130,20 +158,12 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
             }
         });
 
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/reload.png"))); // NOI18N
-        btnUpdate.setToolTipText("Actualizar");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,15 +171,15 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(323, 323, 323))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -167,16 +187,16 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        tblHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
+        tblMembers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Número", "Tipo", "Ocupado", "Precio"
+                "Código", "Nombre", "Descripción", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -190,20 +210,19 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
                 return canEdit [columnIndex];
             }
         });
-        tblHabitaciones.setToolTipText("");
-        tblHabitaciones.setColumnSelectionAllowed(true);
-        tblHabitaciones.getTableHeader().setReorderingAllowed(false);
-        tblHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblMembers.setColumnSelectionAllowed(true);
+        tblMembers.getTableHeader().setReorderingAllowed(false);
+        tblMembers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblHabitacionesMouseClicked(evt);
+                tblMembersMouseClicked(evt);
             }
         });
-        tblHabitaciones.addKeyListener(new java.awt.event.KeyAdapter() {
+        tblMembers.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tblHabitacionesKeyReleased(evt);
+                tblMembersKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(tblHabitaciones);
+        jScrollPane1.setViewportView(tblMembers);
 
         txtFiltro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -223,10 +242,10 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtFiltro)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(txtFiltro))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,11 +262,12 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,75 +284,61 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-    int numero = Integer.parseInt(txtNumero.getText());
-    TipoHabitacion tipo = TipoHabitacion.valueOf(txtTipo.getSelectedItem().toString());
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        clear();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
-    Habitacion newHabitacion = new Habitacion(numero, tipo);
-    controlador.insert(newHabitacion);
-    clear();
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        String name = txtName.getText();
+        double price = Integer.parseInt(txtPrice.getText());
+        Servicio newServicio = new Servicio(name, price);
+        controlador.insert(newServicio);
+        clear();
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        int numero = Integer.parseInt(txtNumero.getText());
-        TipoHabitacion tipo = TipoHabitacion.valueOf(txtTipo.getSelectedItem().toString());
-
-        Habitacion habitacionToDelete = new Habitacion(numero, tipo);
-
-        if (displayConfirmMessage("¿Estás seguro de que deseas eliminar esta habitación?")) {
-            try {
-                controlador.delete(habitacionToDelete);
-                clear();
-            } catch (RuntimeException e) {
-                displayErrorMessage(e.getMessage());
-            }
-        }
+      String id = txtCode.getText();
+    
+    if (!id.isEmpty()) {
+        Servicio servicioToDelete = new Servicio(id);
+        controlador.delete(servicioToDelete);
+        clear();
+    } else {
+        displayErrorMessage("Ingrese la cédula del miembro a eliminar.");
+    }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String buscarNumero = JOptionPane.showInputDialog(this, "Ingrese el número de habitación:");
-        if (buscarNumero != null && !buscarNumero.isEmpty()) {
-            controlador.read(buscarNumero);
+        String searchId = JOptionPane.showInputDialog(this, "Ingrese la cédula del miembro a buscar:");
+        
+        if (searchId != null && !searchId.isEmpty()) {
+            controlador.read(searchId);
         }
+    
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void tblHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHabitacionesMouseClicked
-      if (evt.getClickCount() == 2) {
-           int row = this.tblHabitaciones.getSelectedRow();
-           Object id = tblHabitaciones.getValueAt(row, 0);
+    private void tblMembersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMembersMouseClicked
+      if (evt.getClickCount() == 2) { // Verificar si hubo 2 clics (doble clic)
+           int row = this.tblMembers.getSelectedRow();
+           Object id = tblMembers.getValueAt(row, 0);
            this.controlador.read(id);
         }
-    }//GEN-LAST:event_tblHabitacionesMouseClicked
+    }//GEN-LAST:event_tblMembersMouseClicked
 
-    private void tblHabitacionesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblHabitacionesKeyReleased
-//        if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
-//            int row = this.tblHabitaciones.getSelectedRow();
-//            if (row > -1) {
-//                Object numeroObj = tblHabitaciones.getValueAt(row, 0); // Asumiendo que el número de la habitación está en la primera columna
-//                if (numeroObj instanceof Integer) {
-//                    int numero = (int) numeroObj;
-//                    this.controlador.delete(new Habitacion((int) numeroObj, TipoHabitacion.INDIVIDUAL));
-//                }
-//            }
-//        }
-    }//GEN-LAST:event_tblHabitacionesKeyReleased
+    private void tblMembersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMembersKeyReleased
+//        if (evt.getKeyCode()==KeyEvent.VK_DELETE){
+//            int row = this.tblMembers.getSelectedRow();
+//            if (row>-1){
+//               Object id = tblMembers.getValueAt(row, 0);
+//               this.controlador.delete(new servicio(id.toString()));
+//           }
+//       }
+    }//GEN-LAST:event_tblMembersKeyReleased
 
     private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
-       Tabla.filter(tblHabitaciones,txtFiltro.getText());
+       Tabla.filter(tblMembers,txtFiltro.getText());
     }//GEN-LAST:event_txtFiltroKeyReleased
-
-    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTipoActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int numero = Integer.parseInt(txtNumero.getText());
-        TipoHabitacion tipo = TipoHabitacion.valueOf(txtTipo.getSelectedItem().toString());
-
-        Habitacion updatedHabitacion = new Habitacion(numero, tipo);
-        controlador.update(updatedHabitacion);
-        clear();
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
         // TODO add your handling code here:
@@ -345,61 +351,67 @@ public class FrmHabitaciones extends javax.swing.JInternalFrame implements Vista
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblHabitaciones;
+    private javax.swing.JTable tblMembers;
+    private javax.swing.JFormattedTextField txtCode;
+    private javax.swing.JTextField txtDes;
     private javax.swing.JTextField txtFiltro;
-    private javax.swing.JFormattedTextField txtNumero;
-    private javax.swing.JComboBox<String> txtTipo;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JFormattedTextField txtPrice;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void clear() {
-        txtNumero.setText("");
-        txtTipo.setSelectedIndex(0);
+        txtCode.setText("");
+        txtName.setText("");
+        txtPrice.setText("");
+        txtDes.setText("");
     }
     
     @Override
-    public void display(Habitacion habitacion) {
-        if (habitacion != null) {
-            txtNumero.setText(Integer.toString(habitacion.getNumero()));
-            txtTipo.setSelectedItem(habitacion.getTipo().toString());
-        } else {
-            clear();
-        }
+    public void display(Servicio servicio) {
+    if (servicio != null) {
+        txtCode.setText(Integer.toString(servicio.getCodigo()));
+        txtName.setText(servicio.getNombre());
+        txtPrice.setText(Double.toString(servicio.getprecio()));
+        txtDes.setText(servicio.getDescripcion());
+    } else {
+        clear(); // Limpiar las cajas de texto si el miembro no se encuentra
     }
+}
 
     
     
     @Override
-    public void displayAll(Habitacion[] regs) {
-        DefaultTableModel tableModel = (DefaultTableModel) tblHabitaciones.getModel();
-        tableModel.setNumRows(0);
-
-        for (Habitacion habitacion : regs) {
-            Object[] data = habitacion.toArrayObject();
-            tableModel.addRow(data);
+    public void displayAll(Servicio[] regs) {
+       DefaultTableModel tableModel=(DefaultTableModel) tblMembers.getModel();
+       tableModel.setNumRows(0);
+       for(Servicio servicio:regs){
+           Object[] Data=servicio.toArrayObject();
+            tableModel.addRow(Data);
         }
-
-        tblHabitaciones.setModel(tableModel);
+        this.tblMembers.setModel(tableModel);
     }
 
     @Override
     public void displayMessage(String msj) {
-       JOptionPane.showMessageDialog(this, msj, "Información Importante", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, msj, "Información Importante", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public boolean displayConfirmMessage(String msj) {
+        int result = JOptionPane.showConfirmDialog(this, msj, "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return result == JOptionPane.YES_OPTION;
     }
 
     @Override
     public void displayErrorMessage(String msj) {
         JOptionPane.showMessageDialog(this, msj, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    @Override
-    public boolean displayConfirmMessage(String msj) {
-       int result = JOptionPane.showConfirmDialog(this, msj, "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        return result == JOptionPane.YES_OPTION;
     }
 }

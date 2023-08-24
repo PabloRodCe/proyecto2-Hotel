@@ -4,10 +4,6 @@
  */
 package Interfaces;
 
-/**
- *
- * @author ekard
- */
 public interface Entidad {
 
     public boolean isComplete();
